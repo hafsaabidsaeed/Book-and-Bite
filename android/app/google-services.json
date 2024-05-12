@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1052097614365",
+    "project_id": "bookandbite-7d55a",
+    "storage_bucket": "bookandbite-7d55a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052097614365:android:4c6746dbc949b9ab4cacf4",
+        "android_client_info": {
+          "package_name": "com.example.secondevaluation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK0G7DrMkEOOYw6Xs3Am01txw_9hljsug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
