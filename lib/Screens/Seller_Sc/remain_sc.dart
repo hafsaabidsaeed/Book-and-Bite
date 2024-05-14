@@ -120,6 +120,7 @@ class Remain_Sc extends StatelessWidget {
                               onDismissed: (direction) async {
                                 // Implement delete functionality here
 
+
                                 if (GetVarsCtrl.isRestaurant) {
                                   await ChangeStatusVar.changeStatus(
                                       cmUserID:

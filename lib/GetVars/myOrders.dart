@@ -9,11 +9,15 @@ class MyOrdersGx extends GetxController {
 
   @override
   void onInit() {
+    GetVarsCtrl.isLoadingChange(true);
     myOrders();
     super.onInit();
+
+    GetVarsCtrl.isLoadingChange(false);
   }
 
   myOrders() async {
+
     try {
       DatabaseReference databaseReference =
           FirebaseDatabase.instance.reference();
@@ -31,5 +35,6 @@ class MyOrdersGx extends GetxController {
       print("${e}");
     }
     update();
+
   }
 }

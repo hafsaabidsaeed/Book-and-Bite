@@ -91,6 +91,13 @@ class Home_Seller_Sc extends StatelessWidget {
         snackPosition: SnackPosition.TOP, // Position of the SnackBar
       );
 
+
+      // Clear text input fields
+      _nameController.clear();
+      _descriptionController.clear();
+      _priceController.clear();
+      _selectedImages.clear();
+
       // Dismiss the bottom sheet
       Navigator.pop(context);
     }
