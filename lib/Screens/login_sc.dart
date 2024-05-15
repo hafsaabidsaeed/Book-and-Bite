@@ -57,9 +57,9 @@ class LoginPage extends StatelessWidget {
       'userName': userName,
       'uID': uid
     }).then((_) {
-      print('Data pushed to database successfully');
+      // print('Data pushed to database successfully');
     }).catchError((error) {
-      print('Failed to push data to database: $error');
+      // print('Failed to push data to database: $error');
     });
   }
 
@@ -85,10 +85,6 @@ class LoginPage extends StatelessWidget {
         email: email,
         password: password,
       );
-
-      // await userCredential.user!.updateProfile(
-      //     displayName: GetVarsCtrl.isSeller ? _shopName.text : _userName.text);
-      // print('User Credential: $userCredential');
 
       await _uploadImageToFirebaseStorage();
       pushDataToDatabase(userCredential.user!.uid, _shopName.text,
@@ -409,9 +405,6 @@ class LoginPage extends StatelessWidget {
                                                                     BorderRadius
                                                                         .circular(
                                                                             5)),
-                                                            // padding:
-                                                            //     EdgeInsets.all(
-                                                            //         5.0),
                                                             child: Obx(() {
                                                               if (selectedImage
                                                                       .value !=
