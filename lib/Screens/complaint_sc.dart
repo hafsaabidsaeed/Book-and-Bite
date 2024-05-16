@@ -1,15 +1,12 @@
-import 'dart:io';
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-get kPrimaryLightColor => const Color(0xFFF1E6FF);
-get kPrimaryColor => const Color(0xFF6F35A5);
-get accentColor => Color(0xff04d4ee);
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:io';
 
 class ComplaintScreen extends StatefulWidget {
-  const ComplaintScreen({super.key});
+  const ComplaintScreen({Key? key}) : super(key: key);
+
   @override
   State<ComplaintScreen> createState() => _ComplaintScreenState();
 }
@@ -23,7 +20,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
   PlatformFile? pickedFile;
   UploadTask? uploadTask;
 
-  Future selectFile() async {
+  Future<void> selectFile() async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
 
@@ -32,7 +29,12 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
     });
   }
 
-  Future uploadFile() async {
+  Future<void> uploadAndSubmitComplaint() async {
+    if (pickedFile == null) {
+      // Handle the case where no file is selected
+      return;
+    }
+
     final path = 'files/${pickedFile!.name}';
     final file = File(pickedFile!.path!);
     final ref = FirebaseStorage.instance.ref().child(path);
@@ -45,11 +47,52 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
 
     final urlDownload = await snapshot.ref.getDownloadURL();
 
-    print('Download Link:  $urlDownload');
+    print('Download Link: $urlDownload');
 
     setState(() {
       uploadTask = null;
     });
+
+    String name = _nameController.text;
+    String shopName = _shopNameController.text;
+    String complaint = _complaintController.text;
+
+    await submitComplaint(name, shopName, complaint, urlDownload);
+
+    // Show snackbar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Complaint submitted successfully!'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+
+    // Clear the form
+    _formKey.currentState!.reset();
+    _nameController.clear();
+    _shopNameController.clear();
+    _complaintController.clear();
+    setState(() {
+      pickedFile = null;
+    });
+  }
+
+  Future<void> submitComplaint(
+      String name, String shopName, String complaint, String imageUrl) async {
+    try {
+      await FirebaseFirestore.instance.collection('complaints').add({
+        'name': name,
+        'shopName': shopName,
+        'complaint': complaint,
+        'imageUrl': imageUrl,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      // Successfully submitted
+      print('Complaint submitted successfully!');
+    } catch (e) {
+      // Handle errors
+      print('Error submitting complaint: $e');
+    }
   }
 
   @override
@@ -61,16 +104,16 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
       appBar: AppBar(
         title: const Text(
           'Complaint',
-          style: TextStyle(color: Color(0xFF6F35A5)),
+          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 140, 245, 241),
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
           child: Icon(
             Icons.arrow_back,
-            color: kPrimaryColor,
+            color: Colors.black,
           ),
         ),
       ),
@@ -100,7 +143,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         width: screenWidth,
                         height: screenHeight * 0.07,
                         decoration: BoxDecoration(
-                            color: kPrimaryLightColor,
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(
                               color: Colors.grey,
@@ -112,7 +155,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                             controller: _nameController,
                             keyboardType: TextInputType.text,
                             textInputAction: TextInputAction.next,
-                            cursorColor: kPrimaryColor,
+                            cursorColor: Colors.black,
                             onTap: () {},
                             decoration: const InputDecoration(
                               hintText: 'Enter your name',
@@ -140,7 +183,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         width: screenWidth,
                         height: screenHeight * 0.07,
                         decoration: BoxDecoration(
-                            color: kPrimaryLightColor,
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(
                               color: Colors.grey,
@@ -152,7 +195,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                             controller: _shopNameController,
                             keyboardType: TextInputType.text,
                             textInputAction: TextInputAction.next,
-                            cursorColor: kPrimaryColor,
+                            cursorColor: Colors.black,
                             onTap: () {},
                             decoration: const InputDecoration(
                               hintText: 'Enter shop name',
@@ -180,7 +223,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         width: screenWidth,
                         height: screenHeight * 0.2,
                         decoration: BoxDecoration(
-                            color: kPrimaryLightColor,
+                            color: Colors.white,
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(
                               color: Colors.grey,
@@ -193,7 +236,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                             maxLines: 5,
                             keyboardType: TextInputType.text,
                             textInputAction: TextInputAction.next,
-                            cursorColor: kPrimaryColor,
+                            cursorColor: Colors.black,
                             onTap: () {},
                             decoration: const InputDecoration(
                               hintText: 'Your complaint . . . ',
@@ -206,8 +249,8 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                     ),
                     if (pickedFile != null)
                       Container(
-                        width: screenWidth * 0.8,
-                        height: screenWidth * 0.8,
+                        width: screenWidth * 0.4,
+                        height: screenWidth * 0.4,
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
                           image: DecorationImage(
@@ -224,37 +267,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                       height: screenHeight * 0.01,
                     ),
                     ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          String name = _nameController.text;
-                          String shopName = _shopNameController.text;
-                          String complaint = _complaintController.text;
-
-                          if (pickedFile != null) {
-                            await uploadFile();
-
-                            _formKey.currentState!.reset();
-                            _nameController.clear();
-                            _shopNameController.clear();
-                            _complaintController.clear();
-
-                            setState(() {
-                              pickedFile = null;
-                            });
-
-                            // Show snackbar
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Complaint submitted successfully!'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-
-                          } else {
-                            print('Please select a file before submitting.');
-                          }
-                        }
-                      },
+                      onPressed: uploadAndSubmitComplaint,
                       child: const Text('Submit Complaint'),
                     ),
                   ],
@@ -267,35 +280,4 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
     );
   }
 
-  Widget buildProgress() => StreamBuilder<TaskSnapshot>(
-      stream: uploadTask?.snapshotEvents,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final data = snapshot.data!;
-          double progress = data.bytesTransferred / data.totalBytes;
-          return SizedBox(
-            height: 50,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                LinearProgressIndicator(
-                  value: progress,
-                  backgroundColor: Colors.grey,
-                  color: Colors.green,
-                ),
-                Center(
-                  child: Text(
-                    '${(100 * progress).roundToDouble()}%',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else {
-          return const SizedBox(
-            height: 50,
-          );
-        }
-      });
 }

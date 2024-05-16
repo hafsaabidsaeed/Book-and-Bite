@@ -6,6 +6,7 @@ import 'package:secondevaluation/Screens/Seller_Sc/home_seller_sc.dart';
 import 'package:secondevaluation/Screens/home_sc.dart';
 import 'package:secondevaluation/Screens/login_sc.dart';
 import 'package:get/get.dart';
+import 'package:secondevaluation/Screens/user_main_sc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,7 +54,7 @@ class myApp extends StatelessWidget {
                 })
             : GetVarsCtrl.isSeller
                 ? Home_Seller_Sc()
-                : Home_Sc(),
+                : UserMainScreen(),
       );
     });
   }

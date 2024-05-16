@@ -12,6 +12,7 @@ import 'package:secondevaluation/Screens/home_sc.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:secondevaluation/Screens/user_main_sc.dart';
 
 class LoginPage extends StatelessWidget {
   String? heading;
@@ -94,7 +95,7 @@ class LoginPage extends StatelessWidget {
       if (GetVarsCtrl.isSeller) {
         Get.off(Home_Seller_Sc());
       } else {
-        Get.off(Home_Sc());
+        Get.off(UserMainScreen());
       }
       // If registration is successful, you can navigate to another screen or do something else.
       // For example, Navigator.pushReplacementNamed(context, '/home');
