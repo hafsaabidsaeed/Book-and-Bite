@@ -78,6 +78,8 @@ class SideDrawer extends StatelessWidget {
               GetVarsCtrl.loading(true); // Shows loader before signout
               try {
                 await GetVarsCtrl.auth.signOut(); // Sign out operation
+                Get.back();
+                Get.back();
               } catch (e) {
                 print('Error signing out: $e');
               } finally {
