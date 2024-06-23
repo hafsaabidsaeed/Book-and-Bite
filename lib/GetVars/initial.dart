@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +8,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class GetVars extends GetxController {
   var isSeller = false;
   var isLoading = false;
-  var uID = "";
-  var currentUserName = "";
+  var uID = "";                          //user ID
+  var currentUserName = "";              // username
   final FirebaseAuth auth = FirebaseAuth.instance;
   String currentTimeStatus = 'Good Morning';
-  RxString currentTime = ''.obs;
+  RxString currentTime = ''.obs;          //current time
   Map sellerData = {};
   List menuData = [];
   // final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -33,6 +32,7 @@ class GetVars extends GetxController {
     isLoad = val;
     update();
   }
+
 
   void updateTime() {
     final now = DateTime.now();
@@ -105,7 +105,7 @@ class GetVars extends GetxController {
       }
       update();
     } catch (e) {
-      print("${e}");
+      // print("${e}");
       // scaffoldMsg(context, "Check Internet Connection !");
     }
   }
@@ -130,17 +130,6 @@ class GetVars extends GetxController {
   }
 
   void isSellerChange(bool val) async {
-    // isSeller = val;
-    // final prefs = await SharedPreferences.getInstance();
-    // await prefs.setBool('isTrue', isSeller);
-    // final storedValue = prefs.getBool('isTrue');
-    // if (storedValue != null) {
-    //   isSeller = storedValue;
-    //   update();
-    // }
-    // print(isSeller);
-    // print(storedValue);
-    // update();
     isSeller = val;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isTrue', isSeller);

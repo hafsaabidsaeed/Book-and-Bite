@@ -21,6 +21,7 @@ class LoginPage extends StatelessWidget {
   String? tagLine;
   String? tagLineRoute;
   var onCall;
+
   LoginPage({
     required this.heading,
     required this.title,

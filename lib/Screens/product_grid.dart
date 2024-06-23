@@ -14,54 +14,6 @@ class ProductGrid extends StatelessWidget {
     required this.itemList,
   });
 
-  // final products = [
-  //   {
-  //     "name": 'Product 1',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 2',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 5',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 1',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 2',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 5',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 1',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 2',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  //   {
-  //     "name": 'Product 5',
-  //     "price": '10',
-  //     "imageURL": 'https://via.placeholder.com/150'
-  //   },
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AllSellers>(builder: (allSellersData) {

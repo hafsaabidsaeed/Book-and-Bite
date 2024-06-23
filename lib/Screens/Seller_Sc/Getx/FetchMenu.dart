@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/foundation.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
 import 'package:get/get.dart';
-// import 'package:your_app/firebase_service.dart'; // Import your Firebase service
 
 class MenuControllerData extends GetxController {
   final GetVarsCtrl = Get.put(GetVars());
@@ -33,25 +33,35 @@ class MenuControllerData extends GetxController {
           .once();
       var gotData = data.snapshot.value as Map;
       menuData.clear();
-      print("dsdsdsd ****");
+      if (kDebugMode) {
+        print("dsdsdsd ****");
+      }
       if (gotData["shopType"] == "print") {
         isRestaurant = false;
         update();
-        print("isRestaurant h ya  h **** ${isRestaurant}");
+        if (kDebugMode) {
+          print("isRestaurant h ya  h **** ${isRestaurant}");
+        }
       }
 
       menuData.addAll(gotData["menus"].values.toList());
       menuData.toSet();
-      print("yhi h ${data}");
+      if (kDebugMode) {
+        print("yhi h $data");
+      }
       update();
     } catch (e) {
-      print("${e}");
+      if (kDebugMode) {
+        print("${e}");
+      }
     }
     update();
   }
 
   myOrders() async {
-    print("orders+*********");
+    if (kDebugMode) {
+      print("orders+*********");
+    }
     try {
       DatabaseReference databaseReference =
           FirebaseDatabase.instance.reference();
@@ -76,10 +86,14 @@ class MenuControllerData extends GetxController {
 
       ordersData.toSet();
       ordersCompleted.toSet();
-      print("yhi h orders ************  ${ordersCompleted}");
+      if (kDebugMode) {
+        print("yhi h orders ************  ${ordersCompleted}");
+      }
       update();
     } catch (e) {
-      print("${e}");
+      if (kDebugMode) {
+        print("$e");
+      }
     }
     update();
   }

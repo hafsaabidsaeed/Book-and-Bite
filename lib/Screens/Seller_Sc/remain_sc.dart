@@ -28,11 +28,14 @@ class Remain_Sc extends StatelessWidget {
                   bottomRight: Radius.circular(50))),
           child: Row(
             children: [
+
+              //go back
               IconButton(
                   onPressed: () {
                     Get.back();
                   },
                   icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+
               SizedBox(
                 width: Get.width / 1.2,
                 // color: Colors.red,
@@ -58,15 +61,13 @@ class Remain_Sc extends StatelessWidget {
             ],
           ),
         ),
-        // SizedBox(
-        //   height: 05,
-        // ),
+
         const Row(
           children: [
             Padding(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
-                "Your these customers are waiting ...",
+                "Your these customers are waiting ",
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.grey,
@@ -75,12 +76,13 @@ class Remain_Sc extends StatelessWidget {
             ),
           ],
         ),
+
         const SizedBox(
           height: 10,
         ),
+
         GetBuilder<MenuControllerData>(builder: (mC) {
           return SizedBox(
-            // color: Colors.red,
             height: Get.height / 1.2,
             child: mC.ordersData.isNotEmpty
                 ? ListView.builder(

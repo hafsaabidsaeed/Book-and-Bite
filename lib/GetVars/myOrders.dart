@@ -12,7 +12,6 @@ class MyOrdersGx extends GetxController {
     GetVarsCtrl.isLoadingChange(true);
     myOrders();
     super.onInit();
-
     GetVarsCtrl.isLoadingChange(false);
   }
 
@@ -29,10 +28,10 @@ class MyOrdersGx extends GetxController {
       ordersData.clear();
       ordersData.addAll(gotData["Orders"].values.toList());
       ordersData.toSet();
-      print("yhi h orders ************  ${ordersData}");
+      // print("yhi h orders ************  ${ordersData}");
       update();
     } catch (e) {
-      print("${e}");
+      // print("${e}");
     }
     update();
 

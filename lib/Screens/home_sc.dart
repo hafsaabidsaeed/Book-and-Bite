@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:secondevaluation/GetVars/all_sellers.dart';
 import 'package:secondevaluation/Loader/loader.dart';
+import 'package:secondevaluation/Screens/cart/cart_page.dart';
 import 'package:secondevaluation/Screens/product_list.dart';
 import 'package:secondevaluation/Screens/product_grid.dart';
 import 'package:get/get.dart';
@@ -19,11 +20,23 @@ class Home_Sc extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 76, 197, 193),
-          title: const Text(
-            "Book & Bite",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          title: Center(
+            child: const Text(
+              "Book & Bite",
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ),
           iconTheme: const IconThemeData(color: Colors.white),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              tooltip: 'Open shopping cart',
+              onPressed: () {
+                // handle the press
+                Get.to(CartPage());
+              },
+            ),
+          ],
         ),
         drawer: SideDrawer(),
         body: SingleChildScrollView(
