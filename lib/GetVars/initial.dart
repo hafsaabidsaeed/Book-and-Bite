@@ -81,7 +81,7 @@ class GetVars extends GetxController {
     try {
       // print("hi3");
       DatabaseReference databaseReference =
-          FirebaseDatabase.instance.reference();
+          FirebaseDatabase.instance.ref();
       var data = await databaseReference
           .child('Sellers')
           .child(auth.currentUser!.uid)
@@ -111,7 +111,7 @@ class GetVars extends GetxController {
   }
 
   removeMenu(title) async {
-    DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
+    DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
     final DatabaseReference sellerRef =
         databaseReference.child('Sellers').child(uID).child('menus');
     await sellerRef.child(title).remove();

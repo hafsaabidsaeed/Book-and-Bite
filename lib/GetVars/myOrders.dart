@@ -19,7 +19,7 @@ class MyOrdersGx extends GetxController {
 
     try {
       DatabaseReference databaseReference =
-          FirebaseDatabase.instance.reference();
+          FirebaseDatabase.instance.ref();
       var data = await databaseReference
           .child('Sellers')
           .child(GetVarsCtrl.uID)

@@ -1,3 +1,5 @@
+// data of specific seller (name, shop type) is stored and it is being fetched  in product list screen
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +12,7 @@ class ShopItemsClass extends GetxController {
     try {
       // print("hi3");
       DatabaseReference databaseReference =
-          FirebaseDatabase.instance.reference();
+          FirebaseDatabase.instance.ref();
       var data = await databaseReference.child('Sellers').child(uID).once();
       var gotData = data.snapshot.value as Map;
       sellerData = gotData;
@@ -25,3 +27,5 @@ class ShopItemsClass extends GetxController {
     }
   }
 }
+
+

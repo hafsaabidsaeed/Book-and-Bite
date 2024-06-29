@@ -26,7 +26,7 @@ class AllSellers extends GetxController {
 
   //
   void getAllSellers() async {
-    DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
+    DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
     var data = await databaseReference.child('Sellers').once();
     var gotData = data.snapshot.value as Map;
 
@@ -48,7 +48,7 @@ class AllSellers extends GetxController {
   }
 
   void allProduct() async {
-    DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
+    DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
     var data = await databaseReference.child('Sellers').once();
     if (data != null && data.snapshot.value != null) {
       var sellersData = data.snapshot.value as Map<dynamic, dynamic>;
