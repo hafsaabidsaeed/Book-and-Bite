@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:secondevaluation/Screens/payment/payment.dart';
 import '../display_product.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
-import 'package:secondevaluation/Loader/loader.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -35,64 +35,64 @@ class _CartPageState extends State<CartPage> {
     return total;
   }
 
-  void _placeOrder() async {
-    DateTime now = DateTime.now();
-    String formattedDate = '${now.day}-${now.month}-${now.year}';
-    final _databaseReference = FirebaseDatabase.instance.reference();
-
-    for (var order in globalOrderList) {
-      final Map<String, dynamic> data = {
-        'csName': "${GetVarsCtrl.currentUserName}",
-        'time': "${GetVarsCtrl.currentTime}",
-        'date': "${formattedDate}",
-        'price': "${order['price']}",
-        "uID": GetVarsCtrl.auth.currentUser!.uid,
-        "status": "pending",
-        "item": "${order['name']}"
-      };
-
-      final Map<String, dynamic> userPersonalData = {
-        'csName': "${GetVarsCtrl.currentUserName}",
-        'time': "${GetVarsCtrl.currentTime}",
-        'date': "${formattedDate}",
-        'price': "${order['price']}",
-        "uID": GetVarsCtrl.auth.currentUser!.uid,
-        "status": "pending",
-        "item": "${order['name']}"
-      };
-
-      final DatabaseReference sellerRef =
-      _databaseReference.child('Sellers').child(GetVarsCtrl.auth.currentUser!.uid);
-      await sellerRef
-          .child('Orders')
-          .child("${order['name'] + GetVarsCtrl.auth.currentUser!.uid}")
-          .set(data);
-
-      final _databaseReferencePersonal = FirebaseDatabase.instance.reference();
-      final DatabaseReference sellerRefPersonal = _databaseReferencePersonal
-          .child('Sellers')
-          .child(GetVarsCtrl.auth.currentUser!.uid);
-      await sellerRefPersonal
-          .child('Orders')
-          .child("${order['name'] + GetVarsCtrl.auth.currentUser!.uid}")
-          .set(userPersonalData);
-    }
-
-    setState(() {
-      globalOrderList.clear();
-      currentShopId = null; // Clear the current shop ID after placing the order
-    });
-
-    Get.snackbar(
-      'Success',
-      'Order placed successfully!',
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-      duration: Duration(seconds: 3),
-      borderRadius: 10,
-    );
-  }
+  // void _placeOrder() async {
+  //   DateTime now = DateTime.now();
+  //   String formattedDate = '${now.day}-${now.month}-${now.year}';
+  //   final _databaseReference = FirebaseDatabase.instance.ref();
+  //
+  //   for (var order in globalOrderList) {
+  //     final Map<String, dynamic> data = {
+  //       'csName': "${GetVarsCtrl.currentUserName}",
+  //       'time': "${GetVarsCtrl.currentTime}",
+  //       'date': "${formattedDate}",
+  //       'price': "${order['price']}",
+  //       "uID": GetVarsCtrl.auth.currentUser!.uid,
+  //       "status": "pending",
+  //       "item": "${order['name']}"
+  //     };
+  //
+  //     final Map<String, dynamic> userPersonalData = {
+  //       'csName': "${GetVarsCtrl.currentUserName}",
+  //       'time': "${GetVarsCtrl.currentTime}",
+  //       'date': "${formattedDate}",
+  //       'price': "${order['price']}",
+  //       "uID": GetVarsCtrl.auth.currentUser!.uid,
+  //       "status": "pending",
+  //       "item": "${order['name']}"
+  //     };
+  //
+  //     final DatabaseReference sellerRef =
+  //     _databaseReference.child('Sellers').child(GetVarsCtrl.auth.currentUser!.uid);
+  //     await sellerRef
+  //         .child('Orders')
+  //         .child("${order['name'] + GetVarsCtrl.auth.currentUser!.uid}")
+  //         .set(data);
+  //
+  //     final _databaseReferencePersonal = FirebaseDatabase.instance.ref();
+  //     final DatabaseReference sellerRefPersonal = _databaseReferencePersonal
+  //         .child('Sellers')
+  //         .child(GetVarsCtrl.auth.currentUser!.uid);
+  //     await sellerRefPersonal
+  //         .child('Orders')
+  //         .child("${order['name'] + GetVarsCtrl.auth.currentUser!.uid}")
+  //         .set(userPersonalData);
+  //   }
+  //
+  //   setState(() {
+  //     globalOrderList.clear();
+  //     currentShopId = null; // Clear the current shop ID after placing the order
+  //   });
+  //
+  //   Get.snackbar(
+  //     'Success',
+  //     'Order placed successfully!',
+  //     snackPosition: SnackPosition.TOP,
+  //     backgroundColor: Colors.green,
+  //     colorText: Colors.white,
+  //     duration: Duration(seconds: 3),
+  //     borderRadius: 10,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +100,25 @@ class _CartPageState extends State<CartPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart'),
+        backgroundColor: const Color.fromARGB(255, 76, 197, 193),
+        title: const Text(
+          "Cart",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.help_outline),
+            onPressed: () {
+
+            },
+          ),
+        ],
       ),
       body: Column(
+
         children: [
+          // Text("Cart", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 27),textAlign: TextAlign.left,),
           Expanded(
             child: globalOrderList.isEmpty
                 ? Center(child: Text('Your cart is empty'))
@@ -144,6 +159,11 @@ class _CartPageState extends State<CartPage> {
               },
             ),
           ),
+
+          // payment
+
+
+          //order now button
           Container(
             padding: EdgeInsets.all(20),
             child: Column(
@@ -157,7 +177,10 @@ class _CartPageState extends State<CartPage> {
                 ),
                 SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: _placeOrder,
+                  // onPressed: _placeOrder,
+                  onPressed: () {
+                    Get.to(() => PaymentScreen());
+                  },
                   child: Text('Order Now'),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
