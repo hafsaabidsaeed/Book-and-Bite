@@ -8,6 +8,7 @@ import 'package:secondevaluation/Screens/login_sc.dart';
 import 'package:get/get.dart';
 import 'package:secondevaluation/Screens/user_main_sc.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -19,11 +20,11 @@ void main() async {
               "https://bookandbite-7d55a-default-rtdb.firebaseio.com/",
           messagingSenderId: "messagingSenderId",
           projectId: "bookandbite-7d55a"));
-  runApp(myApp());
+  runApp(BookandBite());
 }
 
-class myApp extends StatelessWidget {
-  myApp({super.key});
+class BookandBite extends StatelessWidget {
+  BookandBite({super.key});
   final GetVarsCtrl = Get.put(GetVars());
   @override
   Widget build(BuildContext context) {

@@ -1,21 +1,21 @@
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: AboutUsScreen(),
-    );
-  }
-}
+// void main() {
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: AboutUsScreen(),
+//     );
+//   }
+// }
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
@@ -98,7 +98,7 @@ class AboutUsScreen extends StatelessWidget {
               ),
               SizedBox(height:  18),
               Text(
-                'Book & Byte – Where Your Campus Experience Comes to Life.',
+                'Book & Bite – Where Your Campus Experience Comes to Life.',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ],
