@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
 import 'package:secondevaluation/Loader/loader.dart';
-
 import 'cart/cart_page.dart';
 
 List<Map<String, dynamic>> globalOrderList = [];
@@ -23,7 +22,6 @@ class DisplayPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Display'),
         actions: [
           IconButton(
             icon: Icon(Icons.shopping_cart),
@@ -109,27 +107,7 @@ class DisplayPage extends StatelessWidget {
                         GetVarsCtrl.loading(true);
 
                         String formattedDate = '${now.day}-${now.month}-${now.year}';
-                        final _databaseReference = FirebaseDatabase.instance.reference();
-                        //
-                        // final Map<String, dynamic> data = {
-                        //   'csName': "${GetVarsCtrl.currentUserName}",
-                        //   'time': "${GetVarsCtrl.currentTime}",
-                        //   'date': "${formattedDate}",
-                        //   'price': "${currentProduct[0]["price"]}",
-                        //   "uID": GetVarsCtrl.auth.currentUser!.uid,
-                        //   "status": "pending",
-                        //   "item": "${currentProduct[0]["title"]}"
-                        // };
-                        //
-                        // final Map<String, dynamic> userPersonalData = {
-                        //   'csName': "${GetVarsCtrl.currentUserName}",
-                        //   'time': "${GetVarsCtrl.currentTime}",
-                        //   'date': "${formattedDate}",
-                        //   'price': "${currentProduct[0]["price"]}",
-                        //   "uID": currentProduct[0]["uID"],
-                        //   "status": "pending",
-                        //   "item": "${currentProduct[0]["title"]}"
-                        // };
+                        final _databaseReference = FirebaseDatabase.instance.ref();
 
                         // Check if the cart is empty or if the current product's shop ID matches the existing shop ID in the cart
                         if (globalOrderList.isEmpty || currentShopId == currentProduct[0]["uID"]) {
@@ -141,21 +119,6 @@ class DisplayPage extends StatelessWidget {
                             'shopId': currentProduct[0]["uID"]
                           });
                           currentShopId = currentProduct[0]["uID"];
-
-                          // final DatabaseReference sellerRef =
-                          // _databaseReference.child('Sellers').child(currentProduct[0]["uID"]);
-                          // await sellerRef
-                          //     .child('Orders')
-                          //     .child("${currentProduct[0]["title"] + GetVarsCtrl.auth.currentUser!.uid}")
-                          //     .set(data);
-                          //
-                          // final _databaseReferencePersonal = FirebaseDatabase.instance.reference();
-                          // final DatabaseReference sellerRefPersonal =
-                          // _databaseReferencePersonal.child('Sellers').child(GetVarsCtrl.auth.currentUser!.uid);
-                          // await sellerRefPersonal
-                          //     .child('Orders')
-                          //     .child("${currentProduct[0]["title"] + GetVarsCtrl.auth.currentUser!.uid}")
-                          //     .set(userPersonalData);
 
                           GetVarsCtrl.loading(false);
 

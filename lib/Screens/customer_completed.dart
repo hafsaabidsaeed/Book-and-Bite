@@ -16,6 +16,20 @@ class CustomerCompltePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 76, 197, 193),
+        title: const Text(
+          "Order Status",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.replay),
+            onPressed: () { },
+          ),
+        ],
+      ),
         body: GetBuilder <GetVars> (
             builder: (GetVarsCtrlMain) {
               return Stack(
@@ -23,60 +37,29 @@ class CustomerCompltePage extends StatelessWidget {
                   SingleChildScrollView(
                     child: Column(
                       children: [
+
                         Container(
-                          height: Get.height / 9,
-                          width: Get.width,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(50),
-                                  bottomRight: Radius.circular(50))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                          color: Colors.white,
+                          child: Column(
+
                             children: [
-                              IconButton(
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                  icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-                              const Text(
-                                "Order Status",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    // color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+
+                              Padding(
+                                padding: EdgeInsets.only(left: 15.0),
+                                child: Text(
+                                  "Accepted, Pending and Completed Orders",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
-
-                              IconButton(onPressed: (){
-                                // GetVarsCtrlM.isLoadingChange(true);
-                                GetVarsCtrl.onInit();
-                                // GetVarsCtrlM.isLoadingChange(false);
-                              }, icon: const Icon(Icons.replay_outlined) )
-
+                              _buildStatusColor(const Color.fromARGB(255, 216, 255, 254), "Order Accepted", ),
+                              _buildStatusColor(const Color.fromARGB(255, 221, 178, 247), "Order Completed",),
+                              _buildStatusColor(const Color.fromARGB(255, 255, 180, 174), "Order Pending", ),
                             ],
                           ),
                         ),
-
-                        const Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 15.0),
-                              child: Text(
-                                "Accepted and Pending Orders",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 10),
-                        // Displaying colors and their purposes
-                        _buildStatusColor(const Color.fromARGB(255, 216, 255, 254), "Order Accepted", ),
-                        _buildStatusColor(const Color.fromARGB(255, 221, 178, 247), "Order Completed",),
-                        _buildStatusColor(const Color.fromARGB(255, 255, 180, 174), "Order Pending", ),
 
 
                         const SizedBox(
