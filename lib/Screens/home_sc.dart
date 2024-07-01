@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:secondevaluation/widgets/drawer.dart';
 import '../GetVars/initial.dart';
+import '../widgets/bottom_nav_bar/cafe_nav_bar.dart';
 
 class Home_Sc extends StatelessWidget {
   Home_Sc({super.key});
@@ -18,27 +19,24 @@ class Home_Sc extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AllSellers>(builder: (aS) {
       return Scaffold(
+
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 76, 197, 193),
-          title: Center(
-            child: const Text(
-              "Book & Bite",
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
+          title: const Text(
+            "Book & Bite",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           iconTheme: const IconThemeData(color: Colors.white),
           actions: [
             IconButton(
-              icon: const Icon(Icons.shopping_cart),
-              tooltip: 'Open shopping cart',
+              icon: Icon(Icons.shopping_cart),
               onPressed: () {
-                // handle the press
                 Get.to(CartPage());
               },
             ),
           ],
         ),
-        drawer: SideDrawer(),
+
         body: SingleChildScrollView(
           child: GetBuilder<GetVars>(builder: (gV) {
             return allSellersData.allMenus.length != 0
@@ -84,7 +82,8 @@ class Home_Sc extends StatelessWidget {
                                 const Text(
                                   "Menus",
                                   style: TextStyle(
-                                      fontSize: 22, fontWeight: FontWeight.w300),
+                                      fontSize: 22, fontWeight: FontWeight.w300
+                                  ),
                                 ),
                                 Container(
                                   height: Get.height / 1.8,
