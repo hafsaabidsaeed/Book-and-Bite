@@ -7,7 +7,7 @@ class ChangeStatus extends GetxController {
   final GetVarsCtrl = Get.put(GetVars());
 
   changeStatus({val, productName, cmUserID}) async {
-    final _databaseReference = FirebaseDatabase.instance.reference();
+    final _databaseReference = FirebaseDatabase.instance.ref();
 
     final Map<String, dynamic> data = {
       "status": "$val",
@@ -26,8 +26,8 @@ class ChangeStatus extends GetxController {
         .child('Orders')
         .child("${productName + cmUserID}")
         .update(data);
-    //
-    final _databaseReferencePersonal = FirebaseDatabase.instance.reference();
+
+    final _databaseReferencePersonal = FirebaseDatabase.instance.ref();
     final DatabaseReference sellerRefPersonal =
         _databaseReferencePersonal.child('Sellers').child(cmUserID);
     await sellerRefPersonal
@@ -38,7 +38,7 @@ class ChangeStatus extends GetxController {
   }
 
   chnagePrintStatus({val, sellerName}) async {
-    final _databaseReference = FirebaseDatabase.instance.reference();
+    final _databaseReference = FirebaseDatabase.instance.ref();
 
     final Map<String, dynamic> data = {
       "status": "$val",
