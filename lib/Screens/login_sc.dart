@@ -41,17 +41,19 @@ class LoginPage extends StatelessWidget {
   final RxString imageUrl = RxString('');
   final RxString shopType = 'restaurant'.obs;
 
+
   bool isValidEmail(String email) {
     return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
+  //data being pushed to firebase
   void pushDataToDatabase(
     String uid,
     String shopName,
     String shopImg,
     String userName,
   ) {
-    DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
+    DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
     databaseReference.child('Sellers').child(uid).set({
       'shopName': shopName,
       'shopType': GetVarsCtrl.isSeller ? shopType.value : "",
@@ -65,6 +67,7 @@ class LoginPage extends StatelessWidget {
     });
   }
 
+  //register
   void _register(context) async {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
@@ -108,6 +111,7 @@ class LoginPage extends StatelessWidget {
     }
   }
 
+  //login function
   _login(context) async {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
@@ -131,7 +135,7 @@ class LoginPage extends StatelessWidget {
 
       if (GetVarsCtrl.isSeller) {
         DatabaseReference databaseReference =
-            FirebaseDatabase.instance.reference();
+            FirebaseDatabase.instance.ref();
         var data = await databaseReference
             .child('Sellers')
             .child(userCredential.user!.uid)
@@ -149,7 +153,7 @@ class LoginPage extends StatelessWidget {
         }
       } else {
         DatabaseReference databaseReference =
-            FirebaseDatabase.instance.reference();
+            FirebaseDatabase.instance.ref();
         var data = await databaseReference
             .child('Sellers')
             .child(userCredential.user!.uid)
