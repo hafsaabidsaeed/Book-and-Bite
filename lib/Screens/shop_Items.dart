@@ -12,28 +12,30 @@ class ShopItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Here is Hot Menu",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300),
-            ),
-            const SizedBox(height: 10),
-            SingleChildScrollView(
-              child: SizedBox(
-                height: Get.height / 1.22,
-                width: Get.width,
-                // color: Colors.red,
-                child: ProductGrid(
-                  itemList: specificSellerData.menuData,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Here is Hot Menu",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300),
+              ),
+              const SizedBox(height: 10),
+              SingleChildScrollView(
+                child: SizedBox(
+                  height: Get.height / 1.22,
+                  width: Get.width,
+                  // color: Colors.red,
+                  child: ProductGrid(
+                    itemList: specificSellerData.menuData,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
