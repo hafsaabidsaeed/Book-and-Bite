@@ -26,7 +26,7 @@ class MenuControllerData extends GetxController {
     print("hiInit");
     try {
       DatabaseReference databaseReference =
-          FirebaseDatabase.instance.reference();
+          FirebaseDatabase.instance.ref();
       var data = await databaseReference
           .child('Sellers')
           .child(GetVarsCtrl.uID)
@@ -64,7 +64,7 @@ class MenuControllerData extends GetxController {
     }
     try {
       DatabaseReference databaseReference =
-          FirebaseDatabase.instance.reference();
+          FirebaseDatabase.instance.ref();
       var data = await databaseReference
           .child('Sellers')
           .child(GetVarsCtrl.uID)
