@@ -1,15 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart'; // Import for launching URLs
 
 class ViewPrints extends StatelessWidget {
   final List<dynamic> list;
 
-  ViewPrints({required this.list, super.key});
+  ViewPrints({required this.list});
+
+  void viewFile(String filePath) async {
+    try {
+      // Use a conditional statement to handle different file types
+      if (filePath.endsWith('.pdf') || filePath.endsWith('.docx') || filePath.endsWith('.png') || filePath.endsWith('.jpg')) {
+        // Open the file using the platform's default viewer (if supported)
+        bool canLaunchFile = await canLaunch(filePath);
+        if (canLaunchFile) {
+          await launch(filePath);
+        } else {
+          // Handle error if the file cannot be launched
+          Get.snackbar(
+            'Error',
+            'Could not open file. Please check if you have an app that supports this file type.',
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        }
+      } else {
+        // Handle other file types or unsupported types
+        Get.snackbar(
+          'Unsupported File',
+          'This file type is not supported for viewing.',
+          backgroundColor: Colors.orange,
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      // Print or log the error for debugging purposes
+      print('Error opening file: $e');
+      Get.snackbar(
+        'Error',
+        'Failed to open file: $e',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('View Prints'),
+      ),
       body: ListView.builder(
         itemCount: list.length,
         itemBuilder: (context, index) {
@@ -31,7 +72,8 @@ class ViewPrints extends StatelessWidget {
             title: Text('File ${index + 1}'),
             subtitle: Text('File path: $item'),
             onTap: () {
-              // Add functionality to view the file here
+              // Call the method to view the file when tapped
+              viewFile(item);
             },
           );
         },
