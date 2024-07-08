@@ -1,3 +1,4 @@
+//Resturant product list being fetched from seller side
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:secondevaluation/GetVars/all_sellers.dart';

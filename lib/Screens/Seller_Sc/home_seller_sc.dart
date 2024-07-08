@@ -23,7 +23,7 @@ class Home_Seller_Sc extends StatelessWidget {
   final TextEditingController _priceController = TextEditingController();
   final RxList<XFile> _selectedImages = <XFile>[].obs;
   final _storage = FirebaseStorage.instance;
-  final _databaseReference = FirebaseDatabase.instance.reference();
+  final _databaseReference = FirebaseDatabase.instance.ref();
 
   Future _uploadImages() async {
     List<String> _selectedImageUrls = [];
