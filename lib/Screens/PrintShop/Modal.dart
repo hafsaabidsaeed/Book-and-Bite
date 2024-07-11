@@ -14,7 +14,7 @@ class AwesomeModal extends StatelessWidget {
   AwesomeModal({required this.context, required this.uid});
   final RxList<XFile> _selectedDocuments = <XFile>[].obs;
   final _storage = FirebaseStorage.instance;
-  final _databaseReference = FirebaseDatabase.instance.reference();
+  final _databaseReference = FirebaseDatabase.instance.ref();
   final GetVarsCtrl = Get.put(GetVars());
   DateTime now = DateTime.now();
 
@@ -47,7 +47,6 @@ class AwesomeModal extends StatelessWidget {
           .child(GetVarsCtrl.currentUserName)
           .set(data);
 
-      Get.back();
       // GetVarsCtrl.scaffoldMsg(context, "Documents Sent Successfully");
     } else {
       if (kDebugMode) {
@@ -58,7 +57,7 @@ class AwesomeModal extends StatelessWidget {
     GetVarsCtrl.isLoadingChange(false);
     Get.snackbar(
       'Success', // Title of the SnackBar
-      'File sent successful', // Message of the SnackBar
+      'File added', // Message of the SnackBar
       colorText: Colors.white,
       backgroundColor: Colors.green, // Background color of the SnackBar
       snackPosition: SnackPosition.TOP, // Position of the SnackBar
