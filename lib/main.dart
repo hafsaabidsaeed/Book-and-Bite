@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
 import 'package:secondevaluation/Screens/Seller_Sc/home_seller_sc.dart';
-import 'package:secondevaluation/Screens/home_sc.dart';
 import 'package:secondevaluation/Screens/login_sc.dart';
 import 'package:get/get.dart';
 import 'package:secondevaluation/Screens/user_main_sc.dart';
