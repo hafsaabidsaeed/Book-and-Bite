@@ -28,6 +28,12 @@ The Book & Bite app aims to enhance the university experience by providing stude
 Screenshots: 
 ![img_1.png](img_1.png)
 
+User Application Mockups
+![img_2.png](img_2.png)
+
+Admin Application Mockups
+![img_3.png](img_3.png)
+
 ## Installation
 
 1. **Clone the repository:**
