@@ -25,6 +25,9 @@ The Book & Bite app aims to enhance the university experience by providing stude
 - **GetX:** For state management and navigation.
 - **API Integration:** For communication with backend services.
 
+Screenshots: 
+![img.png](img.png)
+
 ## Installation
 
 1. **Clone the repository:**
