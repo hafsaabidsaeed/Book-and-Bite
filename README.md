@@ -26,7 +26,7 @@ The Book & Bite app aims to enhance the university experience by providing stude
 - **API Integration:** For communication with backend services.
 
 Screenshots: 
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 ## Installation
 
