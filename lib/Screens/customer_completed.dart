@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:secondevaluation/GetVars/myOrders.dart';
 
@@ -25,7 +23,7 @@ class CustomerCompltePage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.replay),
+            icon: const Icon(Icons.replay),
             onPressed: () { },
           ),
         ],
@@ -44,7 +42,7 @@ class CustomerCompltePage extends StatelessWidget {
 
                             children: [
 
-                              Padding(
+                              const Padding(
                                 padding: EdgeInsets.only(left: 15.0),
                                 child: Text(
                                   "Accepted, Pending and Completed Orders",
@@ -66,11 +64,11 @@ class CustomerCompltePage extends StatelessWidget {
                           height: 10,
                         ),
 
-                        Container(
+                        SizedBox(
                           // color: Colors.red,
                           height: Get.height / 1.2,
                           child: GetBuilder<MyOrdersGx>(builder: (mC) {
-                            return mC.ordersData.length != 0
+                            return mC.ordersData.isNotEmpty
                                 ? ListView.builder(
                                 itemCount: mC.ordersData.length,
                                 itemBuilder: (context, index) {
@@ -115,7 +113,7 @@ class CustomerCompltePage extends StatelessWidget {
                                             :
                                         const Color.fromARGB(255, 255, 180, 174),
                                         title: Text(
-                                          "${mC.ordersData[index]["item"].toString().toUpperCase()}",
+                                          mC.ordersData[index]["item"].toString().toUpperCase(),
                                           style: const TextStyle(fontWeight: FontWeight.bold),
                                         ),
                                         subtitle: Column(

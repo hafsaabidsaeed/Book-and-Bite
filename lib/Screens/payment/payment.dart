@@ -10,6 +10,8 @@ import 'package:secondevaluation/Screens/payment/place_order_func.dart';
 import '../display_product.dart';
 
 class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
+
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
@@ -20,8 +22,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String _selectedPaymentMethod = 'Easy Paisa'; // Default selected payment method
 
   Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
@@ -61,7 +63,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         'Payment has been sent successfully.',
         backgroundColor: Colors.green,
         colorText: Colors.white,
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
         snackPosition: SnackPosition.BOTTOM,
       );
 
@@ -75,7 +77,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         'Failed to upload payment receipt.',
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
         snackPosition: SnackPosition.BOTTOM,
       );
     } finally {
@@ -89,14 +91,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Payment Method'),
+        title: const Text('Select Payment Method'),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             RadioListTile<String>(
-              title: Text('Easy Paisa'),
+              title: const Text('Easy Paisa'),
               value: 'Easy Paisa',
               groupValue: _selectedPaymentMethod,
               onChanged: (value) {
@@ -106,7 +108,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               },
             ),
             RadioListTile<String>(
-              title: Text('JazzCash'),
+              title: const Text('JazzCash'),
               value: 'JazzCash',
               groupValue: _selectedPaymentMethod,
               onChanged: (value) {
@@ -116,7 +118,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               },
             ),
             RadioListTile<String>(
-              title: Text('Sada Pay'),
+              title: const Text('Sada Pay'),
               value: 'Sada Pay',
               groupValue: _selectedPaymentMethod,
               onChanged: (value) {
@@ -129,13 +131,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
               children: [
                 Text(
                   'Send Payment via $_selectedPaymentMethod',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Colors.purple,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GestureDetector(
                   onTap: _pickImage,
                   child: Container(
@@ -149,13 +151,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         image: FileImage(_imageFile!),
                         fit: BoxFit.cover,
                       )
-                          : DecorationImage(
+                          : const DecorationImage(
                         image: AssetImage('assets/images/avatar_placeholder.png'),
                         fit: BoxFit.cover,
                       ),
                     ),
                     child: _imageFile == null
-                        ? Icon(
+                        ? const Icon(
                       Icons.add_a_photo,
                       size: 30,
                       color: Colors.white,
@@ -163,21 +165,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         : null,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _isUploading ? null : _uploadImageAndPlaceOrder,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: _isUploading
-                      ? CircularProgressIndicator(
+                      ? const CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                   )
-                      : Text(
+                      : const Text(
                     'Pay Now',
                     style: TextStyle(
                       fontSize: 18,

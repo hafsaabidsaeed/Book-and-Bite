@@ -11,6 +11,8 @@ import '../Screens/settings.dart';
 class SideDrawer extends StatelessWidget {
   final GetVarsCtrl = Get.put(GetVars());
 
+  const SideDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -60,7 +62,7 @@ class SideDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Settings'),
             onTap: () {
-              Get.to(SettingsScreen());
+              Get.to(const SettingsScreen());
             },
           ),
           ListTile(

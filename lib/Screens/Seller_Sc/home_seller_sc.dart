@@ -26,15 +26,15 @@ class Home_Seller_Sc extends StatelessWidget {
   final _databaseReference = FirebaseDatabase.instance.ref();
 
   Future _uploadImages() async {
-    List<String> _selectedImageUrls = [];
+    List<String> selectedImageUrls = [];
     for (int i = 0; i < _selectedImages.length; i++) {
       final file = File(_selectedImages[i].path);
       final ref = _storage.ref().child('images/${DateTime.now()}_$i.jpg');
       await ref.putFile(file);
       var downloadURL = await ref.getDownloadURL();
-      _selectedImageUrls.add(downloadURL);
+      selectedImageUrls.add(downloadURL);
     }
-    return _selectedImageUrls;
+    return selectedImageUrls;
   }
 
 // Modify pushDataToFirebase to return a boolean indicating success or failure
@@ -118,10 +118,8 @@ class Home_Seller_Sc extends StatelessWidget {
   void _openImagePicker() async {
     final List<XFile> images =
         await ImagePicker().pickMultiImage(imageQuality: 50);
-    if (images != null) {
-      _selectedImages.addAll(images);
+    _selectedImages.addAll(images);
     }
-  }
 
   void _deleteImage(int index) {
     _selectedImages.removeAt(index);

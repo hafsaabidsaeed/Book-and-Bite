@@ -8,6 +8,8 @@ class SettingsScreen extends StatelessWidget {
   final List<String> languages = ['English', 'Urdu'];
   final RxString selectedLanguage = 'English'.obs;
 
+  const SettingsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

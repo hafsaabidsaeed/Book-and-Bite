@@ -6,7 +6,6 @@ import 'package:secondevaluation/Screens/Seller_Sc/Getx/FetchMenu.dart';
 import 'package:secondevaluation/Screens/Seller_Sc/view_print.dart';
 import 'package:secondevaluation/Screens/Status_change.dart';
 import 'package:get/get.dart';
-import 'package:flutter_image/flutter_image.dart' as flutter_image;
 
 class Remain_Sc extends StatelessWidget {
   Remain_Sc({super.key});

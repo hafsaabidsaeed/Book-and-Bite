@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart'; // Import for launching URLs
 class ViewPrints extends StatelessWidget {
   final List<dynamic> list;
 
-  ViewPrints({required this.list});
+  const ViewPrints({super.key, required this.list});
 
   void viewFile(String filePath) async {
     try {
@@ -49,7 +49,7 @@ class ViewPrints extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Prints'),
+        title: const Text('View Prints'),
       ),
       body: ListView.builder(
         itemCount: list.length,
@@ -57,14 +57,14 @@ class ViewPrints extends StatelessWidget {
           String item = list[index];
           Widget fileIcon;
           if (item.endsWith('.pdf')) {
-            fileIcon = Icon(Icons.picture_as_pdf);
+            fileIcon = const Icon(Icons.picture_as_pdf);
           } else if (item.endsWith('.docx')) {
-            fileIcon = Icon(Icons.library_books);
+            fileIcon = const Icon(Icons.library_books);
           } else if (item.endsWith('.png') || item.endsWith('.jpg')) {
-            fileIcon = Icon(Icons.image);
+            fileIcon = const Icon(Icons.image);
           } else {
             // Default icon for unsupported file types
-            fileIcon = Icon(Icons.insert_drive_file);
+            fileIcon = const Icon(Icons.insert_drive_file);
           }
 
           return ListTile(

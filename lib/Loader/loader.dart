@@ -10,7 +10,7 @@ class LoaderCustom extends StatelessWidget {
     return Container(
       height: Get.height,
       width: Get.width,
-      color: Color.fromARGB(116, 255, 255, 255),
+      color: const Color.fromARGB(116, 255, 255, 255),
       child: Lottie.asset("assets/load.json", height: 10),
     );
   }

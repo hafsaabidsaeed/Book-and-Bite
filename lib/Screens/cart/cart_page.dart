@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:secondevaluation/Screens/payment/payment.dart';
 import '../display_product.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
 
 class CartPage extends StatefulWidget {
+  const CartPage({super.key});
+
   @override
   _CartPageState createState() => _CartPageState();
 }
@@ -108,7 +109,7 @@ class _CartPageState extends State<CartPage> {
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.help_outline),
+            icon: const Icon(Icons.help_outline),
             onPressed: () {
 
             },
@@ -121,7 +122,7 @@ class _CartPageState extends State<CartPage> {
           // Text("Cart", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 27),textAlign: TextAlign.left,),
           Expanded(
             child: globalOrderList.isEmpty
-                ? Center(child: Text('Your cart is empty'))
+                ? const Center(child: Text('Your cart is empty'))
                 : ListView.builder(
               itemCount: globalOrderList.length,
               itemBuilder: (context, index) {
@@ -131,7 +132,7 @@ class _CartPageState extends State<CartPage> {
                 final double itemTotalPrice = price * quantity;
 
                 return Card(
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   child: ListTile(
                     leading: Image.network(order['image']),
                     title: Text(order['name']),
@@ -142,12 +143,12 @@ class _CartPageState extends State<CartPage> {
                         Row(
                           children: [
                             IconButton(
-                              icon: Icon(Icons.remove),
+                              icon: const Icon(Icons.remove),
                               onPressed: () => _decrementQuantity(index),
                             ),
                             Text('$quantity'),
                             IconButton(
-                              icon: Icon(Icons.add),
+                              icon: const Icon(Icons.add),
                               onPressed: () => _incrementQuantity(index),
                             ),
                           ],
@@ -165,26 +166,26 @@ class _CartPageState extends State<CartPage> {
 
           //order now button
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 Text(
                   'Total: PKR $totalPrice',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   // onPressed: _placeOrder,
                   onPressed: () {
-                    Get.to(() => PaymentScreen());
+                    Get.to(() => const PaymentScreen());
                   },
-                  child: Text('Order Now'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   ),
+                  child: const Text('Order Now'),
                 ),
               ],
             ),

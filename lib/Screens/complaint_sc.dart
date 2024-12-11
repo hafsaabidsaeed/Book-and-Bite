@@ -5,7 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 
 class ComplaintScreen extends StatefulWidget {
-  const ComplaintScreen({Key? key}) : super(key: key);
+  const ComplaintScreen({super.key});
 
   @override
   State<ComplaintScreen> createState() => _ComplaintScreenState();
@@ -61,7 +61,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
 
     // Show snackbar
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Complaint submitted successfully!'),
         duration: Duration(seconds: 2),
       ),
@@ -106,12 +106,12 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
           'Complaint',
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Color.fromARGB(255, 140, 245, 241),
+        backgroundColor: const Color.fromARGB(255, 140, 245, 241),
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),

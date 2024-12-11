@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
 import 'package:secondevaluation/Loader/loader.dart';
 import 'package:secondevaluation/Screens/Seller_Sc/home_seller_sc.dart';
-import 'package:secondevaluation/Screens/home_sc.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -22,7 +21,7 @@ class LoginPage extends StatelessWidget {
   String? tagLineRoute;
   var onCall;
 
-  LoginPage({
+  LoginPage({super.key, 
     required this.heading,
     required this.title,
     required this.btnText,
@@ -99,7 +98,7 @@ class LoginPage extends StatelessWidget {
       if (GetVarsCtrl.isSeller) {
         Get.off(Home_Seller_Sc());
       } else {
-        Get.off(UserMainScreen());
+        Get.off(const UserMainScreen());
       }
       // If registration is successful, you can navigate to another screen or do something else.
       // For example, Navigator.pushReplacementNamed(context, '/home');
@@ -200,8 +199,8 @@ class LoginPage extends StatelessWidget {
   }
 
   void _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       selectedImage.value = File(pickedFile.path);
     }
@@ -216,7 +215,7 @@ class LoginPage extends StatelessWidget {
             Container(
               height: Get.height,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(begin: Alignment.topCenter, colors: [
                 Color.fromARGB(255, 140, 245, 241),
                 Color.fromARGB(255, 109, 220, 217),
@@ -225,54 +224,54 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   ),
                   Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         FadeInUp(
-                            duration: Duration(milliseconds: 1000),
+                            duration: const Duration(milliseconds: 1000),
                             child: Text(
                               "$heading",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: const Color.fromARGB(255, 84, 84, 84),
+                                  color: Color.fromARGB(255, 84, 84, 84),
                                   fontSize: 40),
                             )),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         FadeInUp(
-                            duration: Duration(milliseconds: 1300),
+                            duration: const Duration(milliseconds: 1300),
                             child: Text(
                               "$title",
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 84, 84, 84),
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 84, 84, 84),
                                   fontSize: 18),
                             )),
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(60),
                               topRight: Radius.circular(60))),
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: EdgeInsets.all(30),
+                          padding: const EdgeInsets.all(30),
                           child: Column(
                             children: <Widget>[
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Container(
+                              SizedBox(
                                   height: 40,
                                   width: Get.width,
                                   // color: Colors.red,
@@ -280,7 +279,7 @@ class LoginPage extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text("User"),
+                                      const Text("User"),
                                       GetBuilder<GetVars>(builder: (gV) {
                                         return CupertinoSwitch(
                                             onChanged: (val) {
@@ -288,20 +287,20 @@ class LoginPage extends StatelessWidget {
                                             },
                                             value: gV.isSeller);
                                       }),
-                                      Text("Seller"),
+                                      const Text("Seller"),
                                     ],
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 50,
                               ),
                               FadeInUp(
-                                  duration: Duration(milliseconds: 700),
+                                  duration: const Duration(milliseconds: 700),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         color:
-                                            Color.fromARGB(255, 243, 243, 243),
+                                            const Color.fromARGB(255, 243, 243, 243),
                                         borderRadius: BorderRadius.circular(20),
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                               color: Color.fromARGB(
                                                   255, 206, 255, 253),
@@ -312,7 +311,7 @@ class LoginPage extends StatelessWidget {
                                       children: <Widget>[
                                         GetBuilder<GetVars>(builder: (gV) {
                                           return Container(
-                                            padding: EdgeInsets.all(10),
+                                            padding: const EdgeInsets.all(10),
                                             decoration: BoxDecoration(
                                                 border: Border(
                                                     bottom: BorderSide(
@@ -328,7 +327,7 @@ class LoginPage extends StatelessWidget {
                                                             gV.isSeller == true
                                                                 ? "Shop Name ?"
                                                                 : "User Name ?",
-                                                        hintStyle: TextStyle(
+                                                        hintStyle: const TextStyle(
                                                             color: Colors.grey),
                                                         border:
                                                             InputBorder.none),
@@ -337,7 +336,7 @@ class LoginPage extends StatelessWidget {
                                           );
                                         }),
                                         Container(
-                                          padding: EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(10),
                                           decoration: BoxDecoration(
                                               border: Border(
                                                   bottom: BorderSide(
@@ -345,7 +344,7 @@ class LoginPage extends StatelessWidget {
                                                           .grey.shade200))),
                                           child: TextField(
                                             controller: _emailController,
-                                            decoration: InputDecoration(
+                                            decoration: const InputDecoration(
                                                 hintText: "Email Address",
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
@@ -353,7 +352,7 @@ class LoginPage extends StatelessWidget {
                                           ),
                                         ),
                                         Container(
-                                          padding: EdgeInsets.all(10),
+                                          padding: const EdgeInsets.all(10),
                                           decoration: BoxDecoration(
                                               border: Border(
                                                   bottom: BorderSide(
@@ -362,7 +361,7 @@ class LoginPage extends StatelessWidget {
                                           child: TextField(
                                             obscureText: true,
                                             controller: _passwordController,
-                                            decoration: InputDecoration(
+                                            decoration: const InputDecoration(
                                                 hintText: "Password",
                                                 hintStyle: TextStyle(
                                                     color: Colors.grey),
@@ -374,7 +373,7 @@ class LoginPage extends StatelessWidget {
                                             ? GetBuilder<GetVars>(
                                                 builder: (gV) {
                                                 return Container(
-                                                    padding: EdgeInsets.all(10),
+                                                    padding: const EdgeInsets.all(10),
                                                     decoration: BoxDecoration(
                                                         border: Border(
                                                             bottom: BorderSide(
@@ -386,7 +385,7 @@ class LoginPage extends StatelessWidget {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Text(
+                                                        const Text(
                                                           "Upload Shop Image",
                                                           style: TextStyle(
                                                               fontWeight:
@@ -429,7 +428,7 @@ class LoginPage extends StatelessWidget {
                                                                   ),
                                                                 );
                                                               } else {
-                                                                return Icon(
+                                                                return const Icon(
                                                                     Icons
                                                                         .camera_outlined,
                                                                     size: 30);
@@ -446,7 +445,7 @@ class LoginPage extends StatelessWidget {
                                             ? GetBuilder<GetVars>(
                                                 builder: (gV) {
                                                 return Container(
-                                                  padding: EdgeInsets.all(10),
+                                                  padding: const EdgeInsets.all(10),
                                                   decoration: BoxDecoration(
                                                       border: Border(
                                                           bottom: BorderSide(
@@ -462,13 +461,13 @@ class LoginPage extends StatelessWidget {
                                                           Obx(
                                                             () => Checkbox(
                                                               fillColor:
-                                                                  MaterialStateProperty
+                                                                  WidgetStateProperty
                                                                       .resolveWith<
                                                                           Color?>(
-                                                                (Set<MaterialState>
+                                                                (Set<WidgetState>
                                                                     states) {
                                                                   if (states.contains(
-                                                                      MaterialState
+                                                                      WidgetState
                                                                           .selected)) {
                                                                     return Colors
                                                                         .green; // Color when checkbox is checked
@@ -488,7 +487,7 @@ class LoginPage extends StatelessWidget {
                                                               },
                                                             ),
                                                           ),
-                                                          Text(
+                                                          const Text(
                                                             'I Have Restaurant',
                                                             style: TextStyle(
                                                                 color:
@@ -504,13 +503,13 @@ class LoginPage extends StatelessWidget {
                                                           Obx(
                                                             () => Checkbox(
                                                               fillColor:
-                                                                  MaterialStateProperty
+                                                                  WidgetStateProperty
                                                                       .resolveWith<
                                                                           Color?>(
-                                                                (Set<MaterialState>
+                                                                (Set<WidgetState>
                                                                     states) {
                                                                   if (states.contains(
-                                                                      MaterialState
+                                                                      WidgetState
                                                                           .selected)) {
                                                                     return Colors
                                                                         .green; // Color when checkbox is checked
@@ -530,7 +529,7 @@ class LoginPage extends StatelessWidget {
                                                               },
                                                             ),
                                                           ),
-                                                          Text(
+                                                          const Text(
                                                             'I Have Printer Shop',
                                                             style: TextStyle(
                                                                 color:
@@ -549,34 +548,34 @@ class LoginPage extends StatelessWidget {
                                       ],
                                     ),
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 40,
                               ),
                               FadeInUp(
-                                  duration: Duration(milliseconds: 1500),
+                                  duration: const Duration(milliseconds: 1500),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         "$tagLine",
-                                        style: TextStyle(color: Colors.grey),
+                                        style: const TextStyle(color: Colors.grey),
                                       ),
                                       GestureDetector(
                                         onTap: onCall,
                                         child: Text(
                                           "$tagLineRoute",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Color.fromARGB(
                                                   255, 55, 129, 175)),
                                         ),
                                       ),
                                     ],
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 40,
                               ),
                               FadeInUp(
-                                  duration: Duration(milliseconds: 1600),
+                                  duration: const Duration(milliseconds: 1600),
                                   child: MaterialButton(
                                     onPressed: () {
                                       if (heading == "Register") {
@@ -589,7 +588,7 @@ class LoginPage extends StatelessWidget {
                                     },
                                     height: 50,
                                     // margin: EdgeInsets.symmetric(horizontal: 50),
-                                    color: Color.fromARGB(255, 76, 197, 193),
+                                    color: const Color.fromARGB(255, 76, 197, 193),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50),
                                     ),
@@ -598,7 +597,7 @@ class LoginPage extends StatelessWidget {
                                     child: Center(
                                       child: Text(
                                         "$btnText",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -613,7 +612,7 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-            gV.isLoading ? LoaderCustom() : Container()
+            gV.isLoading ? const LoaderCustom() : Container()
           ],
         );
       }),

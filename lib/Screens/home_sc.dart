@@ -5,10 +5,7 @@ import 'package:secondevaluation/Screens/cart/cart_page.dart';
 import 'package:secondevaluation/Screens/product_list.dart';
 import 'package:secondevaluation/Screens/product_grid.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
-import 'package:secondevaluation/widgets/drawer.dart';
 import '../GetVars/initial.dart';
-import '../widgets/bottom_nav_bar/cafe_nav_bar.dart';
 
 class Home_Sc extends StatelessWidget {
   Home_Sc({super.key});
@@ -29,9 +26,9 @@ class Home_Sc extends StatelessWidget {
           iconTheme: const IconThemeData(color: Colors.white),
           actions: [
             IconButton(
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               onPressed: () {
-                Get.to(CartPage());
+                Get.to(const CartPage());
               },
             ),
           ],
@@ -39,8 +36,8 @@ class Home_Sc extends StatelessWidget {
 
         body: SingleChildScrollView(
           child: GetBuilder<GetVars>(builder: (gV) {
-            return allSellersData.allMenus.length != 0
-                ? Container(
+            return allSellersData.allMenus.isNotEmpty
+                ? SizedBox(
                     height: Get.height,
                     width: Get.width,
                     // color: const Color.fromARGB(255, 240, 240, 240),
@@ -64,11 +61,11 @@ class Home_Sc extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 22, fontWeight: FontWeight.w300),
                                 ),
-                                Container(
+                                SizedBox(
                                   height: Get.height / 05.5,
                                   width: Get.width,
                                   // color: Colors.green,
-                                  child: ProductList(),
+                                  child: const ProductList(),
                                 )
                               ],
                             ),
@@ -85,7 +82,7 @@ class Home_Sc extends StatelessWidget {
                                       fontSize: 22, fontWeight: FontWeight.w300
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   height: Get.height / 1.8,
                                   width: Get.width,
                                   // color: Colors.red,

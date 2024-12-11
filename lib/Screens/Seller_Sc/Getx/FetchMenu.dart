@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
@@ -40,7 +39,7 @@ class MenuControllerData extends GetxController {
         isRestaurant = false;
         update();
         if (kDebugMode) {
-          print("isRestaurant h ya  h **** ${isRestaurant}");
+          print("isRestaurant h ya  h **** $isRestaurant");
         }
       }
 
@@ -52,7 +51,7 @@ class MenuControllerData extends GetxController {
       update();
     } catch (e) {
       if (kDebugMode) {
-        print("${e}");
+        print("$e");
       }
     }
     update();
@@ -87,7 +86,7 @@ class MenuControllerData extends GetxController {
       ordersData.toSet();
       ordersCompleted.toSet();
       if (kDebugMode) {
-        print("yhi h orders ************  ${ordersCompleted}");
+        print("yhi h orders ************  $ordersCompleted");
       }
       update();
     } catch (e) {

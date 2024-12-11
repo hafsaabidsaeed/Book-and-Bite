@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secondevaluation/GetVars/all_sellers.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
-import 'package:secondevaluation/Loader/loader.dart';
 import 'package:secondevaluation/Screens/PrintShop/Modal.dart';
 import 'package:secondevaluation/Screens/Seller_Sc/Getx/FetchMenu.dart';
 
@@ -78,7 +77,7 @@ class CustomerView extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.replay),
+            icon: const Icon(Icons.replay),
             onPressed: () {},
           ),
         ],
@@ -99,7 +98,7 @@ class CustomerView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.2,
                     child: ListView.builder(
                       itemCount: allSellers.allPrinters.length,
@@ -152,9 +151,9 @@ class CustomerView extends StatelessWidget {
                               ),
                               leading: const Icon(Icons.add),
                               tileColor: const Color.fromARGB(255, 216, 255, 254),
-                              title: Text(
+                              title: const Text(
                                 "Select Document",
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -214,25 +213,25 @@ class CustomerView extends StatelessWidget {
                   Center(
                     child: ElevatedButton.icon(
                       onPressed: () => _pickDateAndTime(context),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.calendar_today,
-                        color: const Color.fromARGB(255, 76, 197, 193),
+                        color: Color.fromARGB(255, 76, 197, 193),
                         size: 30,
                       ),
-                      label: Text(
+                      label: const Text(
                         'Select Date and Time',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 76, 197, 193),
+                          color: Color.fromARGB(255, 76, 197, 193),
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(
-                            color: const Color.fromARGB(255, 76, 197, 193),
+                          side: const BorderSide(
+                            color: Color.fromARGB(255, 76, 197, 193),
                             width: 1,
                           ),
                         ),
@@ -289,7 +288,7 @@ class CustomerView extends StatelessWidget {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 216, 255, 254),
+              backgroundColor: const Color.fromARGB(255, 216, 255, 254),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),

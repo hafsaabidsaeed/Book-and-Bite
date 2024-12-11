@@ -7,6 +7,8 @@ import '../GetVars/discount_carousel_controller.dart';
 class DiscountCarousel extends StatelessWidget {
   final DiscountCarouselController _controller = Get.put(DiscountCarouselController());
 
+  const DiscountCarousel({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,7 +17,7 @@ class DiscountCarousel extends StatelessWidget {
           options: CarouselOptions(
             height: 200.0,  // Adjust height as needed
             autoPlay: true,
-            autoPlayInterval: Duration(seconds: 3),
+            autoPlayInterval: const Duration(seconds: 3),
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
               _controller.changeIndex(index);
@@ -26,7 +28,7 @@ class DiscountCarousel extends StatelessWidget {
               builder: (BuildContext context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(imagePath),
@@ -47,12 +49,12 @@ class DiscountCarousel extends StatelessWidget {
               return Container(
                 width: 8.0,
                 height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _controller.currentIndex.value == index
-                      ? Color.fromRGBO(0, 0, 0, 0.9)
-                      : Color.fromRGBO(0, 0, 0, 0.4),
+                      ? const Color.fromRGBO(0, 0, 0, 0.9)
+                      : const Color.fromRGBO(0, 0, 0, 0.4),
                 ),
               );
             }).toList(),

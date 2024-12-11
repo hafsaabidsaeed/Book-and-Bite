@@ -1,6 +1,5 @@
 //Resturant product list being fetched from seller side
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:secondevaluation/GetVars/all_sellers.dart';
 import 'package:secondevaluation/GetVars/initial.dart';
 import 'package:secondevaluation/GetVars/shopItems.dart';
@@ -13,11 +12,13 @@ class ProductList extends StatelessWidget {
   final getVarsGlobal = Get.put(GetVars());
   final getSpecificSellerCredsCtrl = Get.put(ShopItemsClass());
 
+  const ProductList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AllSellers>(builder: (allSellersGet) {
       return ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: allSellersGet.sellers.length,
         itemBuilder: (context, index) {
@@ -53,11 +54,11 @@ class ProductList extends StatelessWidget {
                     ),
                   );
                 }),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  '${allSellersGet.sellers[index]["shopName"].toString().toUpperCase()}',
+                  allSellersGet.sellers[index]["shopName"].toString().toUpperCase(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
                   ),

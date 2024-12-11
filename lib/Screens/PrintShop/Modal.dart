@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 class AwesomeModal extends StatelessWidget {
   var uid;
   var context;
-  AwesomeModal({required this.context, required this.uid});
+  AwesomeModal({super.key, required this.context, required this.uid});
   final RxList<XFile> _selectedDocuments = <XFile>[].obs;
   final _storage = FirebaseStorage.instance;
   final _databaseReference = FirebaseDatabase.instance.ref();
@@ -29,9 +29,9 @@ class AwesomeModal extends StatelessWidget {
     List<String> documentUrls = await _uploadDocuments();
     String formattedDate = '${now.day}-${now.month}-${now.year}';
     final Map<String, dynamic> data = {
-      'csName': "${GetVarsCtrl.currentUserName}",
+      'csName': GetVarsCtrl.currentUserName,
       'time': "${GetVarsCtrl.currentTime}",
-      'date': "${formattedDate}",
+      'date': formattedDate,
       'documentCount': "${documentUrls.length}",
       "uID": GetVarsCtrl.auth.currentUser!.uid,
       "status": "accept",
@@ -65,15 +65,15 @@ class AwesomeModal extends StatelessWidget {
   }
 
   Future<List<String>> _uploadDocuments() async {
-    List<String> _selectedDocumentUrls = [];
+    List<String> selectedDocumentUrls = [];
     for (int i = 0; i < _selectedDocuments.length; i++) {
       final file = File(_selectedDocuments[i].path);
       final ref = _storage.ref().child('documents/${DateTime.now()}_$i');
       await ref.putFile(file);
       var downloadURL = await ref.getDownloadURL();
-      _selectedDocumentUrls.add(downloadURL);
+      selectedDocumentUrls.add(downloadURL);
     }
-    return _selectedDocumentUrls;
+    return selectedDocumentUrls;
   }
 
   void _openDocumentPicker() async {
@@ -102,7 +102,7 @@ class AwesomeModal extends StatelessWidget {
       content: SingleChildScrollView(
         child: Obx(() => Column(
           children: [
-            Text("You can select PDF / WORD / JPG Or PNG files", style: TextStyle(fontSize: 12),),
+            const Text("You can select PDF / WORD / JPG Or PNG files", style: TextStyle(fontSize: 12),),
             GestureDetector(
                 onTap: _openDocumentPicker,
                 child: const Text(

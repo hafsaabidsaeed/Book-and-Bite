@@ -13,7 +13,7 @@ class DisplayPage extends StatelessWidget {
   final List currentProduct;
   final GetVars GetVarsCtrl = Get.put(GetVars());
 
-  DisplayPage({required this.currentProduct, Key? key}) : super(key: key);
+  DisplayPage({required this.currentProduct, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,9 @@ class DisplayPage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              Get.to(CartPage());
+              Get.to(const CartPage());
             },
           ),
         ],
@@ -107,7 +107,7 @@ class DisplayPage extends StatelessWidget {
                         GetVarsCtrl.loading(true);
 
                         String formattedDate = '${now.day}-${now.month}-${now.year}';
-                        final _databaseReference = FirebaseDatabase.instance.ref();
+                        final databaseReference = FirebaseDatabase.instance.ref();
 
                         // Check if the cart is empty or if the current product's shop ID matches the existing shop ID in the cart
                         if (globalOrderList.isEmpty || currentShopId == currentProduct[0]["uID"]) {

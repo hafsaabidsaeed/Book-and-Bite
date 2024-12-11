@@ -11,13 +11,13 @@ class OrderHelper {
   Future<void> placeOrder() async {
     DateTime now = DateTime.now();
     String formattedDate = '${now.day}-${now.month}-${now.year}';
-    final _databaseReference = FirebaseDatabase.instance.ref();
+    final databaseReference = FirebaseDatabase.instance.ref();
 
     for (var order in globalOrderList) {
       final Map<String, dynamic> data = {
-        'csName': "${GetVarsCtrl.currentUserName}",
+        'csName': GetVarsCtrl.currentUserName,
         'time': "${GetVarsCtrl.currentTime}",
-        'date': "${formattedDate}",
+        'date': formattedDate,
         'price': "${order['price']}",
         "uID": GetVarsCtrl.auth.currentUser!.uid,
         "status": "pending",
@@ -25,9 +25,9 @@ class OrderHelper {
       };
 
       final Map<String, dynamic> userPersonalData = {
-        'csName': "${GetVarsCtrl.currentUserName}",
+        'csName': GetVarsCtrl.currentUserName,
         'time': "${GetVarsCtrl.currentTime}",
-        'date': "${formattedDate}",
+        'date': formattedDate,
         'price': "${order['price']}",
         "uID": GetVarsCtrl.auth.currentUser!.uid,
         "status": "pending",
@@ -35,14 +35,14 @@ class OrderHelper {
       };
 
       final DatabaseReference sellerRef =
-      _databaseReference.child('Sellers').child(GetVarsCtrl.auth.currentUser!.uid);
+      databaseReference.child('Sellers').child(GetVarsCtrl.auth.currentUser!.uid);
       await sellerRef
           .child('Orders')
           .child("${order['name'] + GetVarsCtrl.auth.currentUser!.uid}")
           .set(data);
 
-      final _databaseReferencePersonal = FirebaseDatabase.instance.ref();
-      final DatabaseReference sellerRefPersonal = _databaseReferencePersonal
+      final databaseReferencePersonal = FirebaseDatabase.instance.ref();
+      final DatabaseReference sellerRefPersonal = databaseReferencePersonal
           .child('Sellers')
           .child(GetVarsCtrl.auth.currentUser!.uid);
       await sellerRefPersonal
@@ -57,7 +57,7 @@ class OrderHelper {
       snackPosition: SnackPosition.TOP,
       backgroundColor: Colors.green,
       colorText: Colors.white,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       borderRadius: 10,
     );
   }

@@ -8,7 +8,7 @@ import 'package:path/path.dart' as path;
 class PaymentConfirmationScreen extends StatefulWidget {
   final String paymentMethod;
 
-  const PaymentConfirmationScreen({required this.paymentMethod});
+  const PaymentConfirmationScreen({super.key, required this.paymentMethod});
 
   @override
   _PaymentConfirmationScreenState createState() => _PaymentConfirmationScreenState();
@@ -20,8 +20,8 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen> {
 
   // Function to pick an image from the gallery
   Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path); // Store the picked image file

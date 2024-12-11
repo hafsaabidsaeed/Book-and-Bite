@@ -54,7 +54,7 @@ class BookandBite extends StatelessWidget {
                 })
             : GetVarsCtrl.isSeller
                 ? Home_Seller_Sc()
-                : UserMainScreen(),
+                : const UserMainScreen(),
       );
     });
   }

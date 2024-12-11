@@ -4,7 +4,7 @@ class OrderDetailsScreen extends StatelessWidget {
   final Map<String, dynamic> orderData;
   final Map<String, dynamic> userData;
 
-  const OrderDetailsScreen({
+  const OrderDetailsScreen({super.key, 
     required this.orderData,
     required this.userData,
   });
@@ -13,19 +13,19 @@ class OrderDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order Details'),
+        title: const Text('Order Details'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Order Details',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ListTile(
             title: Text('Customer Name: ${userData['csName']}'),
           ),

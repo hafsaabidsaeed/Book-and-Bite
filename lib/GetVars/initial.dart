@@ -55,7 +55,7 @@ class GetVars extends GetxController {
   }
 
   void startTimer() {
-    const oneSec = const Duration(seconds: 1);
+    const oneSec = Duration(seconds: 1);
     Timer.periodic(oneSec, (Timer timer) {
       updateTime();
     });
@@ -143,7 +143,7 @@ class GetVars extends GetxController {
 
   scaffoldMsg(context, text) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       content: Text(text),
       behavior: SnackBarBehavior.floating,
       backgroundColor: const Color.fromARGB(255, 179, 55, 46),

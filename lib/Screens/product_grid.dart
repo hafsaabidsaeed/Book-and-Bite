@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:secondevaluation/GetVars/all_sellers.dart';
 import 'package:secondevaluation/Screens/display_product.dart';
-import 'package:secondevaluation/Screens/product.dart';
 import 'package:get/get.dart';
 
 class ProductGrid extends StatelessWidget {
@@ -10,7 +8,7 @@ class ProductGrid extends StatelessWidget {
 
   var itemList = [];
 
-  ProductGrid({
+  ProductGrid({super.key, 
     required this.itemList,
   });
 
@@ -18,9 +16,9 @@ class ProductGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AllSellers>(builder: (allSellersData) {
       return GridView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: itemList.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
@@ -31,7 +29,7 @@ class ProductGrid extends StatelessWidget {
             onTap: () {
               var listHere = [];
               listHere.add(itemList[index]);
-              print(" list forward ${listHere}");
+              print(" list forward $listHere");
               Get.to(DisplayPage(
                 currentProduct: listHere,
               ));
@@ -39,7 +37,7 @@ class ProductGrid extends StatelessWidget {
             child: Card(
               color: Colors.white,
               surfaceTintColor: Colors.white,
-              shadowColor: Color.fromARGB(255, 195, 251, 249),
+              shadowColor: const Color.fromARGB(255, 195, 251, 249),
               elevation: 4,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,14 +61,14 @@ class ProductGrid extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${itemList[index]["title"].toString().toUpperCase()}",
-                          style: TextStyle(
+                          itemList[index]["title"].toString().toUpperCase(),
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         // SizedBox(height: 4),
                         Text(
                           "PKR ${itemList[index]["price"]}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                       ],

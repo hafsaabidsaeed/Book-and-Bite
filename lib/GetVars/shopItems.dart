@@ -22,7 +22,7 @@ class ShopItemsClass extends GetxController {
 
       update();
     } catch (e) {
-      print("${e}");
+      print("$e");
       // scaffoldMsg(context, "Check Internet Connection !");
     }
   }

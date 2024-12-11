@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secondevaluation/Screens/PrintShop/Customer_View.dart';
 import 'package:secondevaluation/Screens/complaint_sc.dart';
 import 'package:secondevaluation/Screens/home_sc.dart';
-import 'package:secondevaluation/widgets/bottom_nav_bar/cafe_nav_bar.dart';
 import 'package:secondevaluation/widgets/drawer.dart';
 
 import '../widgets/discount_carousel.dart';
@@ -25,16 +23,16 @@ class _UserMainScreenState extends State<UserMainScreen> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 76, 197, 193),
+        backgroundColor: const Color.fromARGB(255, 76, 197, 193),
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 1,
-        title: Text(
+        title: const Text(
           'Book & Bite',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white ),
           textAlign: TextAlign.center,
         ),
       ),
-      drawer: SideDrawer(),
+      drawer: const SideDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +64,7 @@ class _UserMainScreenState extends State<UserMainScreen> {
                 ],
               ),
             ),
-            DiscountCarousel(),
+            const DiscountCarousel(),
           ],
         ),
       ),
@@ -82,7 +80,7 @@ class _UserMainScreenState extends State<UserMainScreen> {
         } else if (text == 'Printing \n Shop') {
           Get.to(CustomerView());
         } else if (text == 'Complaints') {
-          Get.to(ComplaintScreen());
+          Get.to(const ComplaintScreen());
         }
       },
       child: Container(

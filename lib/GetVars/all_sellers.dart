@@ -32,32 +32,30 @@ class AllSellers extends GetxController {
 
     sellers.clear();
     allPrinters.clear();
-    if (gotData != null) {
-      gotData.forEach((key, value) {
-        if (value['shopType'] == "restaurant" &&
-            value['shopName'].toString().isNotEmpty) {
-          sellers.add(value);
-        } else if (value['shopType'] == "print" &&
-            value['shopName'].toString().isNotEmpty) {
-          allPrinters.add(value);
-        }
-      });
-      print(allPrinters);
-    }
-    update();
+    gotData.forEach((key, value) {
+      if (value['shopType'] == "restaurant" &&
+          value['shopName'].toString().isNotEmpty) {
+        sellers.add(value);
+      } else if (value['shopType'] == "print" &&
+          value['shopName'].toString().isNotEmpty) {
+        allPrinters.add(value);
+      }
+    });
+    print(allPrinters);
+      update();
   }
 
   void allProduct() async {
     DatabaseReference databaseReference = FirebaseDatabase.instance.ref();
     var data = await databaseReference.child('Sellers').once();
-    if (data != null && data.snapshot.value != null) {
+    if (data.snapshot.value != null) {
       var sellersData = data.snapshot.value as Map<dynamic, dynamic>;
       sellersData.forEach((sellerId, sellerData) {
         if (sellerData != null && sellerData['menus'] != null) {
           var menus = sellerData['menus'] as Map<dynamic, dynamic>;
-          menus.values.forEach((menu) {
+          for (var menu in menus.values) {
             allMenus.add(menu);
-          });
+          }
         }
       });
       print(allMenus);
